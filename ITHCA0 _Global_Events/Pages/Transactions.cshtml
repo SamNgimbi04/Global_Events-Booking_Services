@@ -1,0 +1,65 @@
+﻿@page
+@model ITHCA0__Global_Events.Pages.TransactionsModel
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+<div class="container">
+    <h2>Transaction History</h2>
+
+    <hr />
+
+    <!-- ACCOUNT INFO -->
+    <div class="balance-box">
+        <h3>Account: @Model.AccountType</h3>
+        <p><strong>Current Ticket Balance:</strong> @Model.CurrentBalance tickets</p>
+    </div>
+
+    <hr />
+
+    <!-- TRANSACTIONS TABLE -->
+    @if (Model.Transactions.Count == 0)
+    {
+        <p>No transactions found for this account.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Account ID</th>
+                    <th>Event</th>
+                    <th>Tickets</th>
+                    <th>Total Amount</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.Transactions)
+                {
+                    <tr>
+                        <td>@t.BookingDate.ToShortDateString()</td>
+                        <td>@t.AccountID</td>
+                        <td>@(t.EventName ?? "Top Up")</td>
+                        <td>@t.TicketsBooked</td>
+                        <td>R @t.TotalAmount</td>
+                        <td>
+                            @if (t.EventName == null)
+                            {
+                                <span style="color:green;">Top Up</span>
+                            }
+                            else
+                            {
+                                <span style="color:blue;">Booking</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <br />
+    <a href="/Dashboard" class="btn">Back to Dashboard</a>
+</div>

@@ -1,0 +1,36 @@
+﻿@page
+@model ITHCA0__Global_Events.Pages.TopUpModel
+@{
+    ViewData["Title"] = "Top Up Tickets";
+}
+
+<div class="container">
+    <h2>Top Up Tickets</h2>
+
+    <hr />
+
+    <div class="balance-box">
+        <h3>Account: @Model.AccountType</h3>
+        <p><strong>Current Ticket Balance:</strong> @Model.CurrentBalance tickets</p>
+    </div>
+
+    <hr />
+
+    <h3>Add Tickets</h3>
+    <form method="post" asp-page-handler="TopUp">
+        <input type="hidden" asp-for="AccountId" />
+
+        <label>Number of Tickets to Add:</label>
+        <input type="number" asp-for="TicketsToAdd" class="input-field" min="1" />
+        <span asp-validation-for="TicketsToAdd" style="color:red;"></span>
+        <br /><br />
+
+        <p style="color:red;">@Model.ErrorMessage</p>
+        <p style="color:green;">@Model.SuccessMessage</p>
+
+        <button type="submit" class="btn">Top Up</button>
+    </form>
+
+    <br />
+    <a href="/Dashboard" class="btn">Back to Dashboard</a>
+</div>

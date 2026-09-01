@@ -1,0 +1,6 @@
+@ITHCA0_GlobalEvents_Service_HostAddress = http://localhost:5086
+
+GET {{ITHCA0_GlobalEvents_Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

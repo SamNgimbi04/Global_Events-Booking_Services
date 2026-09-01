@@ -1,0 +1,67 @@
+﻿@page
+@model ITHCA0__Global_Events.Pages.BookTicketModel
+@{
+    ViewData["Title"] = "Book Tickets";
+}
+
+<div class="container">
+    <h2>Book Tickets</h2>
+
+    <hr />
+
+    <h3>Available Events</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Available Tickets</th>
+                <th>Price Per Ticket</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ev in Model.Events)
+            {
+                <tr>
+                    <td>@ev.EventName</td>
+                    <td>@ev.EventDate.ToShortDateString()</td>
+                    <td>@ev.AvailableTickets</td>
+                    <td>R @ev.TicketPrice</td>
+                    <td>
+                        <form method="post" asp-page-handler="Book">
+                            <input type="hidden" name="SelectedEventID" value="@ev.EventID" />
+                            <input type="hidden" name="AccountId" value="@Model.AccountId" />
+                            <input type="number" name="Quantity" value="1" min="1"
+                                    max="@ev.AvailableTickets" class="input-small" />
+                            <button type="submit" class="btn-small">Book</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+
+    @if (Model.Receipt != null )
+    {
+        <h3>Booking Receipt</h3>
+        <div class="receipt">
+            <p><strong>Event Name:</strong>@Model.Receipt.EventName</p>
+            <p><strong>Event Date:</strong>@Model.Receipt.EventDate.ToShortDateString()</p>
+            <p><strong>Booking Date:</strong>@Model.Receipt.BookingDate.ToShortDateString()</p>
+            <p><strong>Number of Tickets:</strong>@Model.Receipt.TicketsBooked</p>
+            <p><strong>Price Per Ticket:</strong> R @Model.Receipt.PricePerTicket</p>
+            <p><strong>Total Amount Paid:</strong> R @Model.Receipt.TotalAmount</p>
+            <p><strong>Remaining Tickets in Account:</strong>@Model.Receipt.RemainingTickets</p>
+        </div>
+    }
+
+    <p style="color:red;">@Model.ErrorMessage</p>
+    <p style="color:green;">@Model.SuccessMessage</p>
+     
+    <br />
+    <a href="/Dashboard" class="btn">Back to Dashboard</a>
+</div>
+

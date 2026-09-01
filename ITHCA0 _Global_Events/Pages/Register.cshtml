@@ -1,0 +1,58 @@
+﻿@page
+@model ITHCA0__Global_Events.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+    <h2>Create an Account</h2>
+
+    <form method="post">
+        <div asp-asp-validation-summary="All" style="color:red;"></div>
+
+        <label>Email Address:</label>
+        <input type="email" asp-for="Email" class="input-field" />
+        <span asp-validation-for="Email" style="color:red;"></span>
+        <br /><br />
+
+        <label>Password:</label>
+        <input type="password" asp-for="Password" class="input-field" />
+        <span asp-validation-for="Password" style="color:red;"></span>
+        <br /><br />
+
+        <label>Full Name:</label>
+        <input type="text" asp-for="FullName" class="input-field" />
+        <span asp-validation-for="FullName" style="color:red;"></span>
+        <br /><br />
+
+        <label>ID Number:</label>
+        <input type="text" asp-for="IDNumber" class="input-field" />
+        <span asp-validation-for="IDNumber" style="color:red;"></span>
+        <br /><br />
+
+        <label>Address:</label>
+        <input type="text" asp-for="Address" class="input-field" />
+        <span asp-validation-for="Address" style="color:red;"></span>
+        <br /><br />
+
+        <label>Contact Number:</label>
+        <input type="text" asp-for="ContactNumber" class="input-field" />
+        <span asp-validation-for="ContactNumber" style="color:red;"></span>
+        <br /><br />
+
+        <label>Security Question (Optional):</label>
+        <input type="text" asp-for="SecurityQuestion" class="input-field" />
+        <br /><br />
+
+        <label>Security Answer (Optional):</label>
+        <input type="text" asp-for="SecurityAnswer" class="input-field" />
+        <br /><br />
+
+        <p style=" color:red;">@Model.ErrorMessage</p>
+        <p style="color:green;">@Model.SuccessMessage</p>
+
+        <button type="submit" class="btn">Register</button>
+        <br /><br />
+        <a href="/Login">Already have an account? Login</a>
+    </form>
+</div>

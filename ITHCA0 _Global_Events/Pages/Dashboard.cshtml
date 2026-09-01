@@ -1,0 +1,68 @@
+﻿@page
+@model ITHCA0__Global_Events.Pages.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container">
+    <h2>Welcome, @Model.FullName</h2>
+
+    <hr />
+
+    <h3>My Accounts</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Account ID</th>
+                <th>Account Type</th>
+                <th>Ticket Balance</th>
+                <th>Date Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var acc in Model.Accounts)
+            {
+                <tr>
+                    <td>@acc.AccountID</td>
+                    <td>@acc.AccountType</td>
+                    <td>@acc.TicketBalance</td>
+                    <td>@acc.DateCreated.ToShortDateString()</td>
+                    <td>
+                        <a href="/BookTicket?accountId=@acc.AccountID" class="btn-small">Book Tickets</a>
+                        <a href="/TopUp?accountId=@acc.AccountID" class="btn-small">Top up</a>
+                        <a href="/Transactions?accountId=@acc.AccountID" class="btn-small">Transactions</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <hr />
+
+    <h3>Create New Account</h3>
+    <form method="post" asp-page-handler="CreateAccount">
+        <label>Account Type:</label>
+        <select asp-for="NewAccountType" class="input-field">
+            <option value="Standard">Standard</option>
+            <option value="Premium">Premium</option>
+            <option value="VIP">VIP</option>
+        </select>
+        <br /><br />
+
+        <label>Initial Number of Tickets:</label>
+        <input type="number" asp-for="InitialTickets" class="input-field" min="1" />
+        <br /><br />
+
+        <p style="color:red;">@Model.ErrorMessage</p>
+        <p style="color:green;">@Model.SuccessMessage</p>
+
+        <button type="submit" class="btn"> Create Account</button>
+    </form>
+
+    <hr />
+
+    <form method="post" asp-page-handler="Logout">
+        <button type="submit" class="btn-logout">Logout</button>
+    </form>
+</div>

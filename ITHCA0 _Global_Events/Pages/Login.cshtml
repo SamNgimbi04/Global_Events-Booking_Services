@@ -1,0 +1,32 @@
+﻿@page
+@model ITHCA0__Global_Events.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container">
+    <h2>Login</h2>
+
+    <form method="post">
+        <div asp-validation-summary="All" style="color:red;"></div>
+
+        <label>Email Address:</label>
+        <input type="email" asp-for="Email" class="input-field"/>
+        <span asp-validation-for="Email" style="color:red;"></span>
+        <br /><br />
+
+        <label>Password:</label>
+        <input type="password" asp-for="Password" class="input-field" />
+        <span asp-validation-for="Password" style="color:red;"></span>
+        <br /><br />
+
+        <p style="color:red;">@Model.ErrorMessage</p>
+
+        <button type="submit" class="btn">Login</button>
+        <br /><br />
+        <a href="/ForgotPassword">Forgot your password?</a>
+        <br />
+        <a href="/Register">Do not have an account? Register</a>
+
+    </form>
+</div>
