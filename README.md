@@ -23,14 +23,10 @@ This project provides a platform for browsing and booking event tickets. It incl
 
 ## Project Structure
 Global_Events-Booking_Services/
-├── ITHCA0_Global_Events/          # 
-Website (frontend)
-├── ITHCA0_GlobalEvents_Service/   # 
-Web service (backend/API)
-├── GlobalEventsDB.sql             # 
-Database schema
-└── Project_Documentation          # 
-Project write-up
+├── ITHCA0_Global_Events/          # Website (frontend)
+├── ITHCA0_GlobalEvents_Service/   # Web service (backend/API)
+├── GlobalEventsDB.sql             # Database schema
+└── Project_Documentation          # Project write-up
 
 ## Status
 
